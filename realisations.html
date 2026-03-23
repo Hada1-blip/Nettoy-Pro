@@ -9,13 +9,470 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@300;400;600&family=Bebas+Neue&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="style.css"/>
+<style>
+  /* ===== RESET & BASE ===== */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Open Sans', sans-serif;
+    background: #fefefe;
+    color: #1a2a2f;
+    line-height: 1.5;
+    scroll-behavior: smooth;
+  }
+
+  /* ===== TYPOGRAPHY & CONTRAST FIX ===== */
+  h1, h2, h3, h4, .section-title, .section-desc, .section-tag, p, li, a, .temoignage-text, .author-info, .ba-info p, .ba-info h4 {
+    color: #1a2a2f;
+  }
+
+  .section-tag {
+    color: #2c7a4d;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+    display: inline-block;
+    background: #eaf8ef;
+    padding: 0.2rem 1rem;
+    border-radius: 30px;
+  }
+
+  .section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 2.3rem;
+    margin-bottom: 1rem;
+    color: #0f2b1f;
+  }
+
+  .section-title em {
+    font-style: normal;
+    color: #2c7a4d;
+    border-bottom: 3px solid #2c7a4d;
+  }
+
+  .section-desc {
+    font-size: 1.1rem;
+    max-width: 700px;
+    color: #2d3e3a;
+    margin-bottom: 2rem;
+  }
+
+  /* ===== NAVIGATION (style intégré pour cohérence) ===== */
+  #nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background: #ffffff;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    flex-wrap: wrap;
+  }
+  .nav-logo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 1.8rem;
+    text-decoration: none;
+    color: #1e3a2f;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .nav-logo-icon {
+    background: #2c7a4d;
+    width: 32px;
+    height: 32px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+  }
+  .nav-logo span {
+    color: #2c7a4d;
+  }
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none;
+    font-weight: 600;
+    color: #1f3d35;
+    transition: 0.2s;
+  }
+  .nav-links a.active, .nav-links a:hover {
+    color: #2c7a4d;
+  }
+  .nav-cta {
+    background: #2c7a4d;
+    padding: 0.5rem 1.2rem;
+    border-radius: 40px;
+    color: white !important;
+  }
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+  }
+  .hamburger span {
+    width: 28px;
+    height: 3px;
+    background: #1f3d35;
+    margin: 4px 0;
+    border-radius: 4px;
+  }
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -280px;
+    width: 260px;
+    height: 100%;
+    background: #ffffff;
+    box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+    transition: 0.3s;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    z-index: 1100;
+  }
+  .mobile-menu.open {
+    right: 0;
+  }
+  .mobile-close {
+    align-self: flex-end;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
+  .mobile-menu a {
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid #eee;
+    color: #1e3a2f;
+  }
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .section-title { font-size: 1.9rem; }
+  }
+
+  /* ===== PAGE HERO ===== */
+  .page-hero {
+    padding: 3rem 1rem 2rem;
+    background: #f4f9f0;
+  }
+  .page-hero-dark {
+    background: #eef3e9;
+  }
+
+  /* ===== BEFORE/AFTER SLIDER ===== */
+  .ba-section {
+    padding: 3rem 5%;
+    background: white;
+  }
+  .before-after-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+  .before-after-card {
+    max-width: 550px;
+    background: #ffffff;
+    border-radius: 28px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+    transition: 0.2s;
+    overflow: hidden;
+  }
+  .ba-slider {
+    position: relative;
+    width: 100%;
+    cursor: ew-resize;
+    overflow: hidden;
+    user-select: none;
+  }
+  .ba-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    pointer-events: none;
+  }
+  .ba-after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    clip-path: inset(0 0 0 50%);
+    transition: clip-path 0.1s ease;
+  }
+  .ba-handle {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 4px;
+    height: 100%;
+    background: white;
+    transform: translateX(-50%);
+    z-index: 20;
+    box-shadow: 0 0 0 2px rgba(0,0,0,0.2);
+    cursor: ew-resize;
+  }
+  .ba-handle-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #2c7a4d;
+    color: white;
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    border: 2px solid white;
+  }
+  .ba-labels {
+    position: absolute;
+    bottom: 16px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 16px;
+    z-index: 15;
+    pointer-events: none;
+  }
+  .ba-label {
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(4px);
+    padding: 5px 12px;
+    border-radius: 40px;
+    font-weight: 600;
+    font-size: 0.75rem;
+    color: white !important;
+    letter-spacing: 0.5px;
+  }
+  .ba-info {
+    padding: 1.5rem;
+    border-top: 1px solid #eef2e8;
+  }
+  .ba-info h4 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+    color: #1e3a2f;
+  }
+  .ba-info p {
+    color: #3e5a51;
+    font-size: 0.9rem;
+  }
+
+  /* ===== TEMOIGNAGES ===== */
+  .temoignages-section {
+    background: #f9fbf7;
+    padding: 4rem 5%;
+  }
+  .temoignages-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    margin-top: 2.5rem;
+  }
+  .temoignage-card {
+    background: white;
+    border-radius: 28px;
+    padding: 2rem;
+    max-width: 350px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.05);
+    transition: transform 0.2s;
+  }
+  .quote-icon {
+    font-size: 3rem;
+    font-family: serif;
+    color: #2c7a4d;
+    opacity: 0.3;
+    line-height: 1;
+  }
+  .temoignage-text {
+    font-size: 1rem;
+    margin: 0.5rem 0 1.2rem;
+    color: #2a4038;
+    font-style: normal;
+    font-weight: 500;
+  }
+  .temoignage-author {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 0.8rem;
+  }
+  .author-avatar {
+    background: #eaf1e6;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #2c7a4d;
+    font-size: 1.1rem;
+  }
+  .author-info strong {
+    display: block;
+    font-weight: 700;
+    color: #142e24;
+  }
+  .stars {
+    color: #f5b042;
+    letter-spacing: 2px;
+    font-size: 0.85rem;
+  }
+  .author-info span {
+    font-size: 0.75rem;
+    color: #5f756c;
+  }
+
+  /* ===== CTA BANNER ===== */
+  .cta-banner {
+    background: #1e3a2f;
+    text-align: center;
+    padding: 3rem 2rem;
+    color: white;
+  }
+  .cta-banner h2 {
+    color: white;
+    font-size: 1.9rem;
+    margin-bottom: 1rem;
+  }
+  .cta-banner p {
+    color: #d4e6dd;
+    max-width: 550px;
+    margin: 0 auto 1.8rem;
+  }
+  .btn-primary {
+    background: #f5b042;
+    color: #1e3a2f !important;
+    text-decoration: none;
+    font-weight: 800;
+    padding: 0.9rem 2rem;
+    border-radius: 40px;
+    display: inline-block;
+    transition: 0.2s;
+    box-shadow: 0 5px 12px rgba(0,0,0,0.1);
+  }
+  .btn-primary:hover {
+    background: #ffc15e;
+    transform: translateY(-2px);
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: #0f261f;
+    color: #d0dfd7;
+    padding: 2rem 5% 1rem;
+  }
+  .footer-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+  .footer-brand {
+    max-width: 260px;
+  }
+  .footer-brand p {
+    color: #c0d2c9;
+    font-size: 0.85rem;
+  }
+  .footer-col h4 {
+    color: white;
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+  .footer-col ul {
+    list-style: none;
+  }
+  .footer-col li {
+    margin-bottom: 0.5rem;
+  }
+  .footer-col a {
+    text-decoration: none;
+    color: #c0d2c9;
+    transition: 0.2s;
+  }
+  .footer-col a:hover {
+    color: #f5b042;
+  }
+  .footer-bottom {
+    border-top: 1px solid #2a4d3e;
+    padding-top: 1.5rem;
+    text-align: center;
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-badge {
+    background: #2a4d3e;
+    padding: 0.2rem 0.8rem;
+    border-radius: 30px;
+    font-size: 0.7rem;
+  }
+  @media (max-width: 750px) {
+    .footer-grid { flex-direction: column; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+  }
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 0.6s ease;
+  }
+  .reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
 </head>
 <body>
+
 <nav id="nav">
   <a class="nav-logo" href="index.html"><div class="nav-logo-icon">✦</div>Nettoy<span>Pro</span></a>
-  <ul class="nav-links"><li><a href="index.html">Accueil</a></li><li><a href="services.html">Services</a></li><li><a href="apropos.html">À Propos</a></li><li><a class="active" href="realisations.html">Réalisations</a></li><li><a href="contact.html" class="nav-cta">Contact</a></li></ul>
-  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="apropos.html">À Propos</a></li>
+    <li><a class="active" href="realisations.html">Réalisations</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
   <button class="mobile-close" id="mobileClose">✕</button>
@@ -31,8 +488,13 @@
   <h1 class="section-title">La preuve par <em>l'image</em></h1>
   <p class="section-desc" style="margin:0 auto">Faites glisser pour comparer l'avant et l'après de nos interventions. Le résultat parle de lui-même.</p>
 </div>
+
 <section class="ba-section">
-  <div class="reveal" style="text-align:center"><div class="section-tag">Avant / Après</div><h2 class="section-title">Des transformations <em>spectaculaires</em></h2><p class="section-desc" style="margin:0 auto">Glissez le curseur pour voir l'impact de nos interventions en temps réel.</p></div>
+  <div class="reveal" style="text-align:center">
+    <div class="section-tag">Avant / Après</div>
+    <h2 class="section-title">Des transformations <em>spectaculaires</em></h2>
+    <p class="section-desc" style="margin:0 auto">Glissez le curseur pour voir l'impact de nos interventions en temps réel.</p>
+  </div>
   <div class="before-after-grid">
 
     <!-- Paire 1 : Sol sale → Sol propre et brillant -->
@@ -70,14 +532,32 @@
 
   </div>
 </section>
+
 <section class="temoignages-section">
-  <div class="temoignages-intro reveal"><div class="section-tag">Ils nous font confiance</div><h2 class="section-title">La voix de nos <em>clients</em></h2><p class="section-desc" style="margin:0 auto">Plus de 850 professionnels nous font confiance.</p></div>
+  <div class="temoignages-intro reveal">
+    <div class="section-tag">Ils nous font confiance</div>
+    <h2 class="section-title">La voix de nos <em>clients</em></h2>
+    <p class="section-desc" style="margin:0 auto">Plus de 850 professionnels nous font confiance.</p>
+  </div>
   <div class="temoignages-grid">
-    <div class="temoignage-card reveal"><div class="quote-icon">"</div><p class="temoignage-text">NettoyPro a complètement transformé la gestion de nos locaux. L'équipe est ponctuelle, professionnelle et les résultats sont impeccables à chaque passage. Je recommande sans hésitation.</p><div class="temoignage-author"><div class="author-avatar">SL</div><div class="author-info"><div class="stars">★★★★★</div><strong>Sophie Launay</strong><span>DRH – Cabinet Consulting, Paris</span></div></div></div>
-    <div class="temoignage-card reveal"><div class="quote-icon">"</div><p class="temoignage-text">Intervention d'urgence un dimanche après un dégât des eaux. En moins de 3 heures, l'équipe était sur place et nos bureaux étaient opérationnels le lundi matin. Réactivité exemplaire.</p><div class="temoignage-author"><div class="author-avatar">MR</div><div class="author-info"><div class="stars">★★★★★</div><strong>Marc Renard</strong><span>Directeur Immobilier – Groupe Helios</span></div></div></div>
-    <div class="temoignage-card reveal"><div class="quote-icon">"</div><p class="temoignage-text">Le suivi via l'application est un vrai plus. Je reçois les rapports photo en temps réel et je valide chaque prestation depuis mon téléphone. Exactement ce dont une PME a besoin.</p><div class="temoignage-author"><div class="author-avatar">AC</div><div class="author-info"><div class="stars">★★★★★</div><strong>Amélie Castets</strong><span>Gérante – Résidence Les Arches, Lyon</span></div></div></div>
+    <div class="temoignage-card reveal">
+      <div class="quote-icon">"</div>
+      <p class="temoignage-text">NettoyPro a complètement transformé la gestion de nos locaux. L'équipe est ponctuelle, professionnelle et les résultats sont impeccables à chaque passage. Je recommande sans hésitation.</p>
+      <div class="temoignage-author"><div class="author-avatar">SL</div><div class="author-info"><div class="stars">★★★★★</div><strong>Sophie Launay</strong><span>DRH – Cabinet Consulting, Paris</span></div></div>
+    </div>
+    <div class="temoignage-card reveal">
+      <div class="quote-icon">"</div>
+      <p class="temoignage-text">Intervention d'urgence un dimanche après un dégât des eaux. En moins de 3 heures, l'équipe était sur place et nos bureaux étaient opérationnels le lundi matin. Réactivité exemplaire.</p>
+      <div class="temoignage-author"><div class="author-avatar">MR</div><div class="author-info"><div class="stars">★★★★★</div><strong>Marc Renard</strong><span>Directeur Immobilier – Groupe Helios</span></div></div>
+    </div>
+    <div class="temoignage-card reveal">
+      <div class="quote-icon">"</div>
+      <p class="temoignage-text">Le suivi via l'application est un vrai plus. Je reçois les rapports photo en temps réel et je valide chaque prestation depuis mon téléphone. Exactement ce dont une PME a besoin.</p>
+      <div class="temoignage-author"><div class="author-avatar">AC</div><div class="author-info"><div class="stars">★★★★★</div><strong>Amélie Castets</strong><span>Gérante – Résidence Les Arches, Lyon</span></div></div>
+    </div>
   </div>
 </section>
+
 <div class="cta-banner">
   <h2>Votre espace mérite la même transformation ?</h2>
   <p>Obtenez votre devis personnalisé en moins de 24 heures. Sans engagement.</p>
@@ -92,8 +572,83 @@
     </div>
     <div class="footer-col"><h4>Services</h4><ul><li><a href="services.html">Bureaux & Tertiaire</a></li><li><a href="services.html">Hôtellerie</a></li><li><a href="services.html">Industrie</a></li><li><a href="services.html">Fin de chantier</a></li><li><a href="services.html">Urgences</a></li></ul></div>
     <div class="footer-col"><h4>Navigation</h4><ul><li><a href="index.html">Accueil</a></li><li><a href="apropos.html">À Propos</a></li><li><a href="realisations.html">Réalisations</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-    <div class="footer-col"><h4>Contact</h4><ul><li><a href="tel:0123456789">01 23 45 67 89</a></li><li><a href="/cdn-cgi/l/email-protection#abc8c4c5dfcac8dfebc5cedfdfc4d2dbd9c485cdd9"><span class="__cf_email__" data-cfemail="92f1fdfce6f3f1e6d2fcf7e6e6fdebe2e0fdbcf4e0">[email&#160;protected]</span></a></li><li><a>Paris & Île-de-France</a></li><li><a>Mentions légales</a></li></ul></div>
+    <div class="footer-col"><h4>Contact</h4><ul><li><a href="tel:0123456789">01 23 45 67 89</a></li><li><a href="/cdn-cgi/l/email-protection#aecdc1c0dacfcddaeec0cbdbdbc0d6dfddc08bc3d7"><span class="__cf_email__" data-cfemail="37545859435654437759524242594f464459185044">[email&#160;protected]</span></a></li><li><a>Paris & Île-de-France</a></li><li><a>Mentions légales</a></li></ul></div>
   </div>
   <div class="footer-bottom">
     <span>© 2024 NettoyPro Conciergerie. Tous droits réservés.</span>
-    <div class="footer-badges"><span class="footer-badge">🌱 Éco-certifié</span><span class="footer-badge">�
+    <div class="footer-badges"><span class="footer-badge">🌱 Éco-certifié</span><span class="footer-badge">✨ Matériel pro</span><span class="footer-badge">📋 Devis rapide</span></div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script>
+  // Mobile menu toggle
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const mobileClose = document.getElementById('mobileClose');
+
+  function openMenu() { mobileMenu.classList.add('open'); }
+  function closeMenu() { mobileMenu.classList.remove('open'); }
+  if(hamburger) hamburger.addEventListener('click', openMenu);
+  if(mobileClose) mobileClose.addEventListener('click', closeMenu);
+
+  // Before/After Slider logic (for each .ba-slider)
+  const sliders = document.querySelectorAll('.ba-slider');
+  sliders.forEach(slider => {
+    const afterImg = slider.querySelector('.ba-after');
+    const handle = slider.querySelector('.ba-handle');
+    if(!afterImg || !handle) return;
+
+    function updateClip(clientX) {
+      const rect = slider.getBoundingClientRect();
+      let x = clientX - rect.left;
+      if(x < 0) x = 0;
+      if(x > rect.width) x = rect.width;
+      const percent = (x / rect.width) * 100;
+      afterImg.style.clipPath = `inset(0 0 0 ${percent}%)`;
+      handle.style.left = `${percent}%`;
+    }
+
+    let active = false;
+    const onMouseMove = (e) => {
+      if(!active) return;
+      updateClip(e.clientX);
+    };
+    const onTouchMove = (e) => {
+      if(!active) return;
+      const touch = e.touches[0];
+      if(touch) updateClip(touch.clientX);
+    };
+    const startDrag = () => { active = true; };
+    const endDrag = () => { active = false; };
+
+    handle.addEventListener('mousedown', startDrag);
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mouseup', endDrag);
+    handle.addEventListener('touchstart', startDrag);
+    window.addEventListener('touchmove', onTouchMove);
+    window.addEventListener('touchend', endDrag);
+
+    // initialize clip at 50%
+    const initPercent = 50;
+    afterImg.style.clipPath = `inset(0 0 0 ${initPercent}%)`;
+    handle.style.left = `${initPercent}%`;
+  });
+
+  // reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  function checkReveal() {
+    for(let el of reveals) {
+      const rect = el.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      if(rect.top < windowHeight - 100) {
+        el.classList.add('revealed');
+      }
+    }
+  }
+  window.addEventListener('scroll', checkReveal);
+  window.addEventListener('resize', checkReveal);
+  checkReveal();
+</script>
+</body>
+</html>
