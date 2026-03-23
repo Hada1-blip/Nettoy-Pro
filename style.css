@@ -96,7 +96,7 @@
     @keyframes scrollPulse { 0%,100%{opacity:0.4;transform:scaleY(1)} 50%{opacity:1;transform:scaleY(1.2)} }
 
     /* STATS BANNER */
-    .stats-banner { background: linear-gradient(135deg, var(--dark-blue), #1a6090); padding: 50px clamp(20px,5vw,80px); display: flex; justify-content: center; }
+    .stats-banner { background: linear-gradient(180deg, rgba(21,67,96,0.92) 0%, rgba(26,96,144,0.85) 100%); padding: 44px clamp(20px,5vw,80px); display: flex; justify-content: center; backdrop-filter: blur(4px); }
     .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); max-width: 1100px; width: 100%; }
     .stat-item { text-align: center; padding: 20px 10px; border-right: 1px solid rgba(93,173,226,0.2); } .stat-item:last-child { border-right: none; }
     .stat-item .num { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem,6vw,5rem); background: linear-gradient(135deg, var(--blue), var(--teal)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1; }
@@ -104,9 +104,9 @@
     .stat-divider { display: none; }
 
     /* HERO IMAGE */
-    .hero-img-section { height: 420px; position: relative; overflow: hidden; } .hero-img-section::before { content:''; position:absolute; top:0; left:0; right:0; height:90px; background:linear-gradient(to bottom,#1a6090,transparent); z-index:1; pointer-events:none; }
-    .hero-img-section img { width:100%; height:100%; object-fit:cover; display:block; }
-    .hero-img-overlay { position:absolute; inset:0; background:linear-gradient(to right,rgba(21,67,96,0.88) 0%,rgba(21,67,96,0.35) 55%,transparent 100%); display:flex; align-items:center; padding:0 clamp(20px,6vw,100px); z-index:2; }
+    .hero-img-section { height: 480px; position: relative; overflow: hidden; }
+    .hero-img-section img { width:100%; height:100%; object-fit:cover; object-position: center 30%; display:block; }
+    .hero-img-overlay { position:absolute; inset:0; background:linear-gradient(to right, rgba(10,31,46,0.82) 0%, rgba(10,31,46,0.55) 40%, rgba(10,31,46,0.15) 65%, transparent 100%); display:flex; align-items:center; padding:0 clamp(20px,6vw,100px); z-index:2; }
     .hero-img-text h2 { font-family:'Montserrat',sans-serif; font-weight:900; font-size:clamp(1.8rem,3.5vw,2.8rem); color:var(--white); margin-bottom:12px; }
     .hero-img-text p { color:rgba(255,255,255,0.82); font-size:1rem; max-width:440px; line-height:1.7; margin-bottom:28px; }
 
