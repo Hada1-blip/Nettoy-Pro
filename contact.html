@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="description" content="Demandez votre devis nettoyage professionnel gratuit. Réponse sous 24h. NettoyPro Paris & Île-de-France."/>
+<meta name="keywords" content="nettoyage professionnel, conciergerie, nettoyage bureaux, devis nettoyage"/>
+<title>Contact & Devis — NettoyPro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@300;400;600&family=Bebas+Neue&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<nav id="nav">
+  <a class="nav-logo" href="index.html"><div class="nav-logo-icon">✦</div>Nettoy<span>Pro</span></a>
+  <ul class="nav-links"><li><a href="index.html">Accueil</a></li><li><a href="services.html">Services</a></li><li><a href="apropos.html">À Propos</a></li><li><a href="realisations.html">Réalisations</a></li><li><a href="contact.html" class="nav-cta">Contact</a></li></ul>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose">✕</button>
+  <a href="index.html">Accueil</a>
+  <a href="services.html">Services</a>
+  <a href="apropos.html">À Propos</a>
+  <a href="realisations.html">Réalisations</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<div class="contact-page">
+  <div class="reveal">
+    <div class="section-tag" style="color:var(--teal)">Contactez-nous</div>
+    <h1 class="section-title" style="color:var(--white)">Demandez votre <em style="color:var(--blue)">devis gratuit</em></h1>
+    <p class="section-desc" style="color:rgba(255,255,255,0.65)">Réponse garantie sous 24h. Nos experts analysent votre besoin et vous proposent une solution adaptée à votre budget.</p>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info reveal">
+      <div class="contact-info-item"><div class="contact-icon">📞</div><div><strong>Téléphone</strong><span>01 23 45 67 89 — Lun-Sam 7h–20h</span></div></div>
+      <div class="contact-info-item"><div class="contact-icon">✉️</div><div><strong>Email</strong><span>contact@nettoypro.fr</span></div></div>
+      <div class="contact-info-item"><div class="contact-icon">📍</div><div><strong>Siège social</strong><span>12 Rue de l'Innovation, 75008 Paris<br/>Interventions sur toute l'Île-de-France</span></div></div>
+      <div class="contact-info-item"><div class="contact-icon">⚡</div><div><strong>Urgences 24h/24</strong><span>Ligne dédiée : 06 78 90 12 34</span></div></div>
+      <div class="contact-map-img"><img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=700&q=80" alt="Paris zone intervention" loading="lazy"/></div>
+    </div>
+    <div class="contact-form reveal">
+      <div class="form-title">✦ Votre devis en 2 minutes</div>
+      <form id="devisForm" novalidate>
+        <div class="form-row">
+          <div class="form-group"><label>Prénom *</label><input type="text" placeholder="Jean" required/></div>
+          <div class="form-group"><label>Nom *</label><input type="text" placeholder="Dupont" required/></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Email *</label><input type="email" placeholder="jean@entreprise.fr" required/></div>
+          <div class="form-group"><label>Téléphone</label><input type="tel" placeholder="01 23 45 67 89"/></div>
+        </div>
+        <div class="form-group"><label>Type de prestation *</label><select required><option value="">— Sélectionnez —</option><option>Bureaux & locaux professionnels</option><option>Hôtellerie & conciergerie</option><option>Industrie & entrepôts</option><option>Fin de chantier</option><option>Nettoyage écologique</option><option>Urgence / ponctuel</option></select></div>
+        <div class="form-row">
+          <div class="form-group"><label>Surface (m²)</label><input type="number" placeholder="ex: 250"/></div>
+          <div class="form-group"><label>Ville / Code postal</label><input type="text" placeholder="Paris, 75001"/></div>
+        </div>
+        <div class="form-group"><label>Message / Précisions</label><textarea placeholder="Décrivez votre besoin, fréquence souhaitée, contraintes particulières…"></textarea></div>
+        <button type="submit" class="form-submit"><span>Envoyer ma demande de devis ✦</span></button>
+        <div class="form-note">🔒 Vos données sont protégées (RGPD). Réponse garantie sous 24h.</div>
+        <div class="form-success" id="formSuccess">✦ Merci ! Votre demande a bien été envoyée.<br/>Notre équipe vous contacte sous 24h.</div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a class="nav-logo" href="index.html" style="margin-bottom:16px;display:inline-flex"><div class="nav-logo-icon">✦</div>Nettoy<span>Pro</span></a>
+      <p>Votre partenaire de confiance pour un nettoyage professionnel, éco-responsable et sur mesure depuis 2012.</p>
+    </div>
+    <div class="footer-col"><h4>Services</h4><ul><li><a href="services.html">Bureaux & Tertiaire</a></li><li><a href="services.html">Hôtellerie</a></li><li><a href="services.html">Industrie</a></li><li><a href="services.html">Fin de chantier</a></li><li><a href="services.html">Urgences</a></li></ul></div>
+    <div class="footer-col"><h4>Navigation</h4><ul><li><a href="index.html">Accueil</a></li><li><a href="apropos.html">À Propos</a></li><li><a href="realisations.html">Réalisations</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="footer-col"><h4>Contact</h4><ul><li><a href="tel:0123456789">01 23 45 67 89</a></li><li><a href="mailto:contact@nettoypro.fr">contact@nettoypro.fr</a></li><li><a>Paris & Île-de-France</a></li><li><a>Mentions légales</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2024 NettoyPro Conciergerie. Tous droits réservés.</span>
+    <div class="footer-badges"><span class="footer-badge">🌱 Éco-certifié</span><span class="footer-badge">🏆 ISO 9001</span><span class="footer-badge">🔒 RGPD</span></div>
+  </div>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
